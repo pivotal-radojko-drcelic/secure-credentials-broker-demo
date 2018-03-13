@@ -1,23 +1,23 @@
 = Secure Credentials Broker Demo
 
 This application demostrates storing application credentials in CredHub.
-Prerequisites are that has CredHub and https://github.com/cloudfoundry/secure-credentials-broker[Secure Credentials Broker] are installed.
 
 ----
 $ ../gradlew assemble
 $ cf push
 ----
 
-After deploying the application, send an HTTP request to the demo application with this command:
+If all prerequisites are met, you may send an HTTP request to the demo application like this:
 
 ----
 $ curl -X GET http://secure-credentials-demo.cf.example.com/test"
 ----
 
-The application will retrieve and display credentials from CredHub via Secure Credentials Broker and show them on the screen.
-NOTICE: This application is only for demostartion purposes!!! Use in production is on your own risk!!!
+and the application will retrieve and display credentials from CredHub via Secure Credentials Broker and show them on the screen.
+NOTICE: This application is only for demostartion purposes!!! Until secure-credentials-broker gets official, use in production is not recommended!!!
 
 == Prerequisites
+=== PAS 2.1 and greater available
 === UAA client with CH scopes created
 First and foremost you have to create UAA client with proper scopes. You may use UAA CLI for this.
 ----
