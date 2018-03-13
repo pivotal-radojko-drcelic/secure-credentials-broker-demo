@@ -13,13 +13,14 @@ If all prerequisites are met, you may send an HTTP request to the demo applicati
 $ curl -X GET http://secure-credentials-demo.cf.example.com/test"
 ----
 
-and the application will retrieve and display credentials from CredHub via Secure Credentials Broker and show them on the screen.
-NOTICE: This application is only for demostartion purposes!!! Until secure-credentials-broker gets official, use in production is not recommended!!!
+and the application will retrieve and display credentials from CredHub via Secure Credentials Broker.
+
+*NOTICE*: This application is only for demostartion purposes!!! Until secure-credentials-broker gets official, use in production is not recommended!!!
 
 == Prerequisites
 === PAS 2.1 and greater available
 === UAA client with CH scopes created
-First and foremost you have to create UAA client with proper scopes. You may use UAA CLI for this.
+First and foremost you have to create UAA client with proper scopes and grant type. You may use UAA CLI for this.
 ----
 $ uaac client add --name uaa_team_x --scope "uaa.none,credhub.write,credhub.read" --authorized_grant_types client_credentials --authorities "credhub.write,credhub.read"
 ----
