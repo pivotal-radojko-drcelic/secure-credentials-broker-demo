@@ -1,8 +1,6 @@
 = Secure Credentials Broker Demo
 
 This application can be used to test Secure Credentials Broker connectivity by deploying it to a Cloud Foundry platform that has CredHub and Secure Credentials Broker installed.
-The demo application includes a deployment manifest that makes it simple to deploy the application.
-Use the http://docs.cloudfoundry.org/cf-cli/getting-started.html[`cf` CLI] to target and authenticate to a Cloud Foundry platform, and run the following commands:
 
 ----
 $ ../gradlew assemble
@@ -15,6 +13,36 @@ After deploying the application, send an HTTP request to the demo application wi
 $ curl -X GET http://secure-credentials-demo.cf.example.com/test"
 ----
 
-The application will retrieve display credentials from CredHub via Secure Credentials Broker and show them on the screen.
+The application will retrieve and display credentials from CredHub via Secure Credentials Broker and show them on the screen.
 NOTICE: This application is only for demostartion purposes!!! Use in production is on your own risk!!!
+
+== Prerequisites
+=== UAA client with CH scopes created
+First and foremost you have to create UAA client with proper scopes. You may use UAA CLI for this.
+----
+$ uaac client add --name uaa_team_x --scope "uaa.none,credhub.write,credhub.read" --authorized_grant_types client_credentials --authorities "credhub.write,credhub.read"
+----
+You will be asked to enter cliendID and secret, remember them.
+
+=== Service broker installed
+`secure-credentials-broker` is still not officialy supported, source code is https://github.com/cloudfoundry/secure-credentials-broker[here]. You may ask for access permission from CH team.
+Follow instructions, configure secure-credentials-broker manifest with UAA CH client you just created. Here it is necessary to know exact URL to Runtime CH.
+When all configured, you may
+----
+$ cf push
+$ cf create-service-broker secure-credentials admin admin https://<your-service-broker-app-url-goes-here>
+$ cf enable-service-access secure-credentials
+----
+Now your secure-credentials service should be visible in marketplace
+
+=== Create service
+Create secure-credentials service and store some application specific credentials in CH via secure-credentials-broker
+----
+$ cf create-service secure-credentials default my_app_creds -c '{"username": "secret_username","password":"secret_password","url":"https://some.service.com"}'
+----
+
+Now, you may restage or push this secure-credentials-broker-demo.
+
+
+
 
