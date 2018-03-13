@@ -5,6 +5,6 @@ logging:
 
 app:
   configurations:
-    username: ${vcap.services.rocs_creds.credentials.username}
-    password: ${vcap.services.rocs_creds.credentials.password}
-    url: ${vcap.services.rocs_creds.credentials.serviceUrl}
+    username: ${vcap.services.my_app_creds.credentials.username}
+    password: ${vcap.services.my_app_creds.credentials.password}
+    url: ${vcap.services.my_app_creds.credentials.serviceUrl}
