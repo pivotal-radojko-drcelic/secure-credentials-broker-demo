@@ -1,6 +1,7 @@
 = Secure Credentials Broker Demo
 
-This application can be used to test Secure Credentials Broker connectivity by deploying it to a Cloud Foundry platform that has CredHub and Secure Credentials Broker installed.
+This application demostrates storing application credentials in CredHub.
+Prerequisites are that has CredHub and https://github.com/cloudfoundry/secure-credentials-broker[Secure Credentials Broker] are installed.
 
 ----
 $ ../gradlew assemble
