@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: info
+
+
+app:
+  configurations:
+    username: ${vcap.services.rocs_creds.credentials.username}
+    password: ${vcap.services.rocs_creds.credentials.password}
+    url: ${vcap.services.rocs_creds.credentials.serviceUrl}

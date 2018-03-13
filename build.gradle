@@ -1,0 +1,62 @@
+/*
+ * Copyright 2016-2017 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+description = 'Secure Credentials Broker Demo'
+
+buildscript {
+	ext {
+		springBootVersion = "1.5.9.RELEASE"
+	}
+
+	dependencies {
+		classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+		classpath 'io.spring.gradle:spring-io-plugin:0.0.7.RELEASE'
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	}
+
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/plugins-release" }
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+apply plugin: 'propdeps-eclipse'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+  
+    compile 'io.pivotal.spring.cloud:cloudfoundry-certificate-truster:1.0.1.RELEASE'
+	compile "io.vavr:vavr:0.9.0"
+
+	provided group: 'org.projectlombok', name: 'lombok'
+
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}

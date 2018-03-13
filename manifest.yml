@@ -1,0 +1,7 @@
+---
+applications:
+- name: secure-credentials-demo
+  memory: 1G
+  path: build/libs/secure-credentials-broker-demo.jar
+  services:
+    - rocs_creds

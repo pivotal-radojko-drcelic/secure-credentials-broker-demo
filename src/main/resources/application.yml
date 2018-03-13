@@ -1,0 +1,11 @@
+logging:
+  level:
+    org.springframework.credhub.demo: debug
+    org.springframework.security.oauth2: debug
+
+
+app:
+  configurations:
+    username: uname
+    password: pwd
+    url: url
